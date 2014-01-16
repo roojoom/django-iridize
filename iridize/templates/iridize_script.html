@@ -1,0 +1,8 @@
+{% if is_iridize_enabled %}
+<script language="JavaScript" type="application/javascript">
+/* Iridize.com*/iridize={api:{q:[]},loadScripts:[],loadCss:[]};(function(){var e=document.createElement("script");var t=document.getElementsByTagName("script")[0];e.src=("https:"==document.location.protocol?"https:":"http:")+"//static-iridize.netdna-ssl.com/player/latest/static/js/iridizeLoader.min.js";e.type="text/javascript";e.async=true;t.parentNode.insertBefore(e,t)})();iridizeCall=function(e,t,n){iridize.api.q.push({method:e,data:t,callback:n})};iridize.appId="kFHtDBZ+SXSmzw9sRF2hhA";iridize.env="{{ iridize_env }}";
+
+//FOR PER USER ACTIVATION RULES AND GOAL TRACKING - UNCOMMENT THE FOLLOWING LINE AND SET user_id
+iridizeCall("api.fields.set",{user_id:"{{ user_id }}", joined_at:"{{ joined_at }}"});
+</script>
+{% endif %}
