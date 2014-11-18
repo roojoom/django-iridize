@@ -11,13 +11,14 @@ register = template.Library()
 def iridize_script(context):
     request = context['request']
     joined_at_epoch = int(time.mktime(request.user.date_joined.timetuple())) if request.user.is_authenticated() else 0
-    params = {
+    vars = {
         'iridize_env': settings.IRIDIZE_ENV,
+        'iridize_appid': settings.IRIDIZE_APP_ID,
         'is_iridize_enabled': settings.IS_IRIDIZE_ENABLED,
         'user_id': request.user.id,
         'joined_at': joined_at_epoch
     }
-    return params
+    return vars
 
 
 # Usage:

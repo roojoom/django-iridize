@@ -1,8 +1,14 @@
 {% if is_iridize_enabled %}
-<script language="JavaScript" type="application/javascript">
-/* Iridize.com*/iridize={api:{q:[]},loadScripts:[],loadCss:[]};(function(){var e=document.createElement("script");var t=document.getElementsByTagName("script")[0];e.src=("https:"==document.location.protocol?"https:":"http:")+"//static-iridize.netdna-ssl.com/player/latest/static/js/iridizeLoader.min.js";e.type="text/javascript";e.async=true;t.parentNode.insertBefore(e,t)})();iridizeCall=function(e,t,n){iridize.api.q.push({method:e,data:t,callback:n})};iridize.appId="kFHtDBZ+SXSmzw9sRF2hhA";iridize.env="{{ iridize_env }}";
+<script type="text/javascript">
+/* Iridize.com*/window.iridize=window.iridize||function(e,t,n){return iridize.api.call(e,t,n);};iridize.api=iridize.api||{q:[],call:function(e,t,n){iridize.api.q.push({method:e,data:t,callback:n});}};
 
-//FOR PER USER ACTIVATION RULES AND GOAL TRACKING - UNCOMMENT THE FOLLOWING LINE AND SET user_id
-iridizeCall("api.fields.set",{user_id:"{{ user_id }}", joined_at:"{{ joined_at }}"});
+iridize.appId="{{ iridize_appid }}";
+/*FOR YOUR DEV OR STAGING ENVIRONMENTS PLEASE MODIFY THE NEXT LINE TO READ iridize.env="dev";*/
+iridize.env="{{ iridize_env }}";
+
+iridize("api.fields.set",{user_id:"{{ user_id }}",joined_at:{{ joined_at }}});
+
+(function(){var e=document.createElement("script");var t=document.getElementsByTagName("script")[0];e.src=("https:"==document.location.protocol?"https:":"http:")+"//d2p93rcsj9dwm5.cloudfront.net/player/latest/static/js/iridizeLoader.min.js";e.type="text/javascript";e.async=true;t.parentNode.insertBefore(e,t)})();
 </script>
+
 {% endif %}
